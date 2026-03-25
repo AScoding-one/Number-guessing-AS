@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#ff6b6b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>💎 NUMBER QUEST - ULTIMATE EMPIRE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-item">
+            <div class="top-bar-label">💰 Coins</div>
+            <div class="top-bar-value" id="coins">0</div>
+        </div>
+        <div class="top-bar-item">
+            <div class="top-bar-label">🏆 Level</div>
+            <div class="top-bar-value" id="level">1</div>
+        </div>
+        <div class="top-bar-item">
+            <div class="top-bar-label">🔥 Streak</div>
+            <div class="top-bar-value" id="streak">0</div>
+        </div>
+    </div>
+
+    <div class="subtitle">🎯 BECOME A NUMBER LEGEND 🎯</div>
+    <h1>💎 NUMBER QUEST</h1>
+
+    <div class="container">
+        <h2>🎮 GUESS IT!</h2>
+
+        <div class="level-info" id="levelInfo">
+            <div class="level-bar-bg">
+                <div class="level-bar-fill" id="levelBarFill"></div>
+            </div>
+            <div class="level-text">Level <span id="currentLevel">1</span> - <span id="xpText">0/100 XP</span></div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="stat-label">Tries</div>
+                <div class="stat-value" id="attempts">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Range</div>
+                <div class="stat-value">1-100</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Today</div>
+                <div class="stat-value" id="todayGames">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Win %</div>
+                <div class="stat-value" id="winRate">0%</div>
+            </div>
+        </div>
+
+        <input type="text" id="guessInput" placeholder="Enter a number..." onkeypress="handleKeyPress(event)" autocomplete="off" inputmode="numeric">
+        <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 10px; margin-bottom: 18px;">
+            <button id="guessBtn" onclick="checkGuess()">🚀 GUESS!</button>
+            <button id="hintBtn" onclick="useHint()" style="display: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">💡 HINT</button>
+        </div>
+        <div id="message"></div>
+        <button class="reset-btn" id="resetBtn" onclick="resetGame()" style="display: none;">🔄 PLAY AGAIN</button>
+
+        <div class="difficulty-info" id="difficultyInfo"></div>
+        <div class="high-score-box" id="highScoreBox" style="display: none;">
+            <div class="high-score-label">🏆 New Personal Best!</div>
+            <div class="high-score-value" id="newBestScore"></div>
+        </div>
+
+        <div class="buttons-row">
+            <button class="shop-btn" onclick="openShop(); return false;">🛍️ SHOP</button>
+            <button class="achievements-btn" onclick="openAchievements(); return false;">🏅 ACHIEVEMENTS</button>
+        </div>
+    </div>
+
+    <!-- SHOP MODAL -->
+    <div class="modal" id="shopModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeShop()">✕</button>
+            <h2>🛍️ SHOP - POWER UPS & COSMETICS</h2>
+            
+            <div class="shop-coins">
+                <div class="coin-display">💰 <span id="shopCoins">0</span> Coins</div>
+            </div>
+
+            <div class="shop-tabs">
+                <button class="shop-tab active" data-tab="powerups" onclick="switchTab('powerups')">⚡ Power Ups</button>
+                <button class="shop-tab" data-tab="cosmetics" onclick="switchTab('cosmetics')">🎨 Cosmetics</button>
+            </div>
+
+            <div id="powerups-content" class="shop-tab-content active">
+                <div class="shop-items" id="shopItems"></div>
+            </div>
+
+            <div id="cosmetics-content" class="shop-tab-content">
+                <div class="shop-items" id="cosmeticItems"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACHIEVEMENTS MODAL -->
+    <div class="modal" id="achievementsModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeAchievements()">✕</button>
+            <h2>🏅 ACHIEVEMENTS</h2>
+            <div class="achievements-list" id="achievementsList"></div>
+        </div>
+    </div>
+
+    <!-- BONUS POP-UP -->
+    <div class="bonus-popup" id="bonusPopup">
+        <div class="bonus-content">
+            <div class="bonus-icon" id="bonusIcon">💰</div>
+            <div class="bonus-text" id="bonusText">+100 Coins!</div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
